@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}TimeMatch - Home{% endblock %}
+
+{% block content %}
+<div class="home">
+    <h2>Welcome to TimeMatch</h2>
+    <p>Easily coordinate event scheduling with friends and colleagues.</p>
+    {% if not user.is_authenticated %}
+        <a href="{% url 'signup' %}" class="btn">Get Started</a>
+    {% else %}
+        <p>You're logged in! Start by <a href="{% url 'create_event' %}">creating an event</a>.</p>
+    {% endif %}
+</div>
+{% endblock %}
