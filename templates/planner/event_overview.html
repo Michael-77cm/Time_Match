@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Event Overview{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Event Overview</h2>
+    {% if user_events %}
+        {% for event in user_events %}
+            <div class="event-card">
+                <h3>{{ event.title }}</h3>
+                <p><strong>Code:</strong> {{ event.code }}</p>
+                <p><strong>Members:</strong> {{ event.memberships.count }}</p>
+                {% if event.finalized_date %}
+                    <p><strong>Finalized:</strong> {{ event.finalized_date }} {{ event.finalized_start_time }}-{{ event.finalized_end_time }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No events to display.</p>
+    {% endif %}
+</div>
+{% endblock %}
