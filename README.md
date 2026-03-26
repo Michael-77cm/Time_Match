@@ -89,21 +89,7 @@ Suggested points to document if they apply to your project:
 
 ## Agile Planning
 
-An Agile tool should be used to plan and track the project. Add the link and screenshots for evidence.
-
-Recommended evidence:
-
-- Project board link: `ADD TRELLO / GITHUB PROJECTS / JIRA LINK`
-- Screenshot of backlog: `ADD IMAGE`
-- Screenshot of in-progress and completed tasks: `ADD IMAGE`
-
-### Example User Stories
-
-- As a new user, I want to register for an account so that I can create and manage events
-- As an authenticated user, I want to create an event so that I can invite others
-- As an invited user, I want to join an event using a code so that I can participate quickly
-- As an event member, I want to submit my availability so that the group can compare options
-- As a user, I want to see notifications about my activity so that I stay informed
+Project board link: `https://github.com/users/Michael-77cm/projects/6/views/1`
 
 ## Database Design
 
@@ -159,16 +145,6 @@ The project includes custom Python business logic in the Django views and forms:
 - Create availability entry
 - Read notifications
 
-### Important Note
-
-For a strict interpretation of full CRUD, update and delete views should also be present for at least one core record type before final submission. If you add them, document them here and include screenshots or test evidence.
-
-Suggested CRUD completion options:
-
-- Edit an existing availability record
-- Delete an availability record
-- Edit an event title
-- Delete an event created by the owner
 
 ## Forms and Validation
 
