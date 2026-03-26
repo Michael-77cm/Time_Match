@@ -65,18 +65,18 @@ The interface is intended to be simple, predictable, and easy to navigate for fi
 
 Accessibility evidence to add before submission:
 
-- Link to validator or audit tool used
-- Screenshot of results showing no major WCAG issues
-- Notes on any fixes made during testing
+- *Link to validator or audit tool used*
+- *Screenshot of results showing no major WCAG issues*
+- *Notes on any fixes made during testing*
 
 ### Wireframes and Mockups
+- Desktop wireframe:
+  ![Wireframe](https://github.com/user-attachments/assets/9d25ccd7-3910-412a-8a5d-bd7d6fa199f2)
 
-Add your wireframes, mockups, or design board links here:
+- Mobile view: 
+![mobileversion](https://github.com/user-attachments/assets/d76654b1-f77a-489e-aaef-bfc9cfa3fd5a)
 
-- Home page wireframe: `ADD LINK OR IMAGE`
-- Dashboard wireframe: `ADD LINK OR IMAGE`
-- Availability form wireframe: `ADD LINK OR IMAGE`
-- Final UI screenshots: `ADD LINK OR IMAGE`
+
 
 ### Design Changes During Development
 
