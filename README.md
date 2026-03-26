@@ -65,9 +65,9 @@ The interface is intended to be simple, predictable, and easy to navigate for fi
 
 Accessibility evidence to add before submission:
 
-- Link to validator or audit tool used
-- Screenshot of results showing no major WCAG issues
-- Notes on any fixes made during testing
+- *Link to validator or audit tool used*
+- *Screenshot of results showing no major WCAG issues*
+- *Notes on any fixes made during testing*
 
 ### Wireframes and Mockups
 Desktop version wireframe:
@@ -79,27 +79,17 @@ Mobile version Wireframe:
 
 ### Design Changes During Development
 
-Suggested points to document if they apply to your project:
-
 - Navigation was refined so logged-in users see dashboard actions immediately
 - Feedback messages were added to improve form clarity
 - Event access was simplified by using a shareable event code
-- The event flow was split into smaller pages to reduce confusion
+- 
 
 ## Agile Planning
 
 An Agile tool should be used to plan and track the project.
 
-- Project board link: `ADD TRELLO / GITHUB PROJECTS / JIRA LINK`
+- Project board link: `https://github.com/users/Michael-77cm/projects/6`
   
-
-### Example User Stories
-
-- As a new user, I want to register for an account so that I can create and manage events
-- As an authenticated user, I want to create an event so that I can invite others
-- As an invited user, I want to join an event using a code so that I can participate quickly
-- As an event member, I want to submit my availability so that the group can compare options
-- As a user, I want to see notifications about my activity so that I stay informed
 
 ## Database Design
 
@@ -109,7 +99,7 @@ The application uses Django ORM with SQLite in development.
 
 #### `Event`
 
-Stores the event title, unique code, creator, creation timestamp, and optional finalized schedule details.
+Stores the event title, unique code, creator, creation timestamp, and optional finalised schedule details.
 
 #### `EventMembership`
 
@@ -123,15 +113,8 @@ Stores a user's submitted date, start time, end time, and availability status fo
 
 Stores short user-specific messages related to event actions.
 
-### Data Relationships
-
-- One user can create many events
-- One event can have many members
-- One user can join many events
-- One event can contain many availability records
-- One user can have many notifications
+### Data Relationships diagram
 ![ERD timewatch](https://github.com/user-attachments/assets/f6e9f4d1-ddb8-41fb-b929-b555afd0d9e3)
-
 
 
 ### Data Integrity
@@ -146,7 +129,7 @@ Stores short user-specific messages related to event actions.
 
 The project includes custom Python business logic in the Django views and forms:
 
-- Event codes are generated using a loop and uniqueness check
+- Event codes are generated using a loop and a uniqueness check
 - Conditional logic handles valid and invalid form submissions
 - User membership is created only when needed using `get_or_create`
 - Form querysets are filtered to show only events relevant to the logged-in user
@@ -162,16 +145,6 @@ The project includes custom Python business logic in the Django views and forms:
 - Create availability entry
 - Read notifications
 
-### Important Note
-
-For a strict interpretation of full CRUD, update and delete views should also be present for at least one core record type before final submission. If you add them, document them here and include screenshots or test evidence.
-
-Suggested CRUD completion options:
-
-- Edit an existing availability record
-- Delete an availability record
-- Edit an event title
-- Delete an event created by the owner
 
 ## Forms and Validation
 
@@ -185,7 +158,7 @@ The project includes Django forms for:
 Validation currently includes:
 
 - required field validation
-- event code normalization to uppercase
+- event code normalisation to uppercase
 - event queryset filtering based on the logged-in user
 - data-type handling for dates and times
 
@@ -233,15 +206,15 @@ The repository currently contains a starter `tests.py` file. For assessment, tes
 
 | Feature | Test Case | Expected Result | Actual Result |
 | --- | --- | --- | --- |
-| Registration | Submit valid sign-up form | User account created and logged in | `ADD RESULT` |
-| Login | Submit valid credentials | User is logged in and sees authenticated navigation | `ADD RESULT` |
-| Create Event | Submit event title | Event created with unique code | `ADD RESULT` |
-| Join Event | Enter valid event code | User is added to event membership | `ADD RESULT` |
-| Join Event | Enter invalid event code | Clear error message is shown | `ADD RESULT` |
-| Availability | Submit valid date and time range | Availability saved successfully | `ADD RESULT` |
-| Notifications | Trigger event creation | User sees notification entry | `ADD RESULT` |
-| Access Control | Visit protected page while logged out | Redirect to login or denied access | `ADD RESULT` |
-| Responsiveness | View site on mobile width | Layout remains usable and readable | `ADD RESULT` |
+| Registration | Submit valid sign-up form | User account created and logged in | `PASS` |
+| Login | Submit valid credentials | User is logged in and sees authenticated navigation | `PASS` |
+| Create Event | Submit event title | Event created with unique code | `PASS` |
+| Join Event | Enter valid event code | User is added to event membership | `PASS` |
+| Join Event | Enter invalid event code | Clear error message is shown | `PASS` |
+| Availability | Submit valid date and time range | Availability saved successfully | `PASS` |
+| Notifications | Trigger event creation | User sees notification entry | `PASS` |
+| Access Control | Visit protected page while logged out | Redirect to login or denied access | `PASS` |
+| Responsiveness | View site on mobile width | Layout remains usable and readable | `PASS` |
 
 
 
@@ -255,7 +228,7 @@ Security-related practices used in the project include:
 
 Before deployment, confirm the following:
 
-- no passwords or secrets are committed
+- No passwords or secrets are committed
 - `DEBUG = False` in production
 - production hosts are set correctly
 - environment variables are configured on the hosting platform
@@ -265,6 +238,5 @@ Before deployment, confirm the following:
 
 The project is structured for cloud deployment with `Gunicorn` and a `Procfile`.
 
-- deployed app URL: `ADD URL`
+- deployed app URL: `https://discord.com/channels/@me/1466753123551940638/1486704188032286720`
 - screenshot of deployed home page: `ADD IMAGE`
-- screenshot of deployed dashboard: `ADD IMAGE`
