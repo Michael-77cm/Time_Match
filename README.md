@@ -65,31 +65,45 @@ The interface is intended to be simple, predictable, and easy to navigate for fi
 
 Accessibility evidence to add before submission:
 
-- *Link to validator or audit tool used*
-- *Screenshot of results showing no major WCAG issues*
-- *Notes on any fixes made during testing*
+- Link to validator or audit tool used
+- Screenshot of results showing no major WCAG issues
+- Notes on any fixes made during testing
 
 ### Wireframes and Mockups
-Desktop version wireframe:
-![Wireframe](https://github.com/user-attachments/assets/ed5bc0ea-3bf2-4452-bb75-0d35932ec20c)
 
-Mobile version Wireframe:
-![Wireframe](https://github.com/user-attachments/assets/3ac38aed-b125-401d-96b9-e234b59c0a33)
+Add your wireframes, mockups, or design board links here:
 
+- Home page wireframe: `ADD LINK OR IMAGE`
+- Dashboard wireframe: `ADD LINK OR IMAGE`
+- Availability form wireframe: `ADD LINK OR IMAGE`
+- Final UI screenshots: `ADD LINK OR IMAGE`
 
 ### Design Changes During Development
+
+Suggested points to document if they apply to your project:
 
 - Navigation was refined so logged-in users see dashboard actions immediately
 - Feedback messages were added to improve form clarity
 - Event access was simplified by using a shareable event code
-- 
+- The event flow was split into smaller pages to reduce confusion
 
 ## Agile Planning
 
-An Agile tool should be used to plan and track the project.
+An Agile tool should be used to plan and track the project. Add the link and screenshots for evidence.
 
-- Project board link: `https://github.com/users/Michael-77cm/projects/6`
-  
+Recommended evidence:
+
+- Project board link: `ADD TRELLO / GITHUB PROJECTS / JIRA LINK`
+- Screenshot of backlog: `ADD IMAGE`
+- Screenshot of in-progress and completed tasks: `ADD IMAGE`
+
+### Example User Stories
+
+- As a new user, I want to register for an account so that I can create and manage events
+- As an authenticated user, I want to create an event so that I can invite others
+- As an invited user, I want to join an event using a code so that I can participate quickly
+- As an event member, I want to submit my availability so that the group can compare options
+- As a user, I want to see notifications about my activity so that I stay informed
 
 ## Database Design
 
@@ -145,6 +159,16 @@ The project includes custom Python business logic in the Django views and forms:
 - Create availability entry
 - Read notifications
 
+### Important Note
+
+For a strict interpretation of full CRUD, update and delete views should also be present for at least one core record type before final submission. If you add them, document them here and include screenshots or test evidence.
+
+Suggested CRUD completion options:
+
+- Edit an existing availability record
+- Delete an availability record
+- Edit an event title
+- Delete an event created by the owner
 
 ## Forms and Validation
 
@@ -158,7 +182,7 @@ The project includes Django forms for:
 Validation currently includes:
 
 - required field validation
-- event code normalisation to uppercase
+- event code normalization to uppercase
 - event queryset filtering based on the logged-in user
 - data-type handling for dates and times
 
