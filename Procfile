@@ -1,1 +1,1 @@
-web: gunicorn timematch.wsgi
+web: gunicorn --chdir Timematch- timematch.wsgi
