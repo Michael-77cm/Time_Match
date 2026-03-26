@@ -26,6 +26,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "local-dev-only-change-this-2f4f56de71
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+IS_PRODUCTION = os.environ.get("DJANGO_ENV", "").lower() == "production" or os.environ.get("DYNO") is not None
 
 ALLOWED_HOSTS = [
     host.strip()
@@ -124,9 +125,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR.parent / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-if not DEBUG:
+if IS_PRODUCTION:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+else:
+    # Allow local development without requiring collectstatic.
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    WHITENOISE_USE_FINDERS = True
+    WHITENOISE_AUTOREFRESH = True
+
+if IS_PRODUCTION and not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
     SECURE_HSTS_SECONDS = 31536000
