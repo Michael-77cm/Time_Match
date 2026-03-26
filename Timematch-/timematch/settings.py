@@ -1,3 +1,5 @@
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-2!8v^k@1z#r7w4$g9b0l6%q3x@5e^1!z8r2w4$g9b0l6%q3x@5e^1!z8r2w4$g9'
 """
 Django settings for timematch project.
 
