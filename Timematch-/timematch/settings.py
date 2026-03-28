@@ -30,7 +30,7 @@ IS_PRODUCTION = os.environ.get("DJANGO_ENV", "").lower() == "production" or os.e
 
 ALLOWED_HOSTS = [
     host.strip()
-    for host in os.environ.get("ALLOWED_HOSTS", ".herokuapp.com,127.0.0.1,localhost").split(",")
+    for host in os.environ.get("ALLOWED_HOSTS", ".herokuapp.com,127.0.0.1,localhost", '8000-nielmc-django-project-0kylrta3cs.us2.codeanyapp.com',).split(",")
     if host.strip()
 ]
 
