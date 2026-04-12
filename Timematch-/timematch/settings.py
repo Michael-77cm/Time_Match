@@ -37,9 +37,7 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 
-CSRF_TRUSTED_ORIGINS = 
-[ 'https://*.herokuapp.com']
-
+CSRF_TRUSTED_ORIGINS = [ 'https://time-match-b5217b2f90ba.herokuapp.com'] 
 
 
 # Application definition
