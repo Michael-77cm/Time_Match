@@ -170,3 +170,6 @@ if IS_PRODUCTION and not DEBUG:
     CSRF_COOKIE_SECURE = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'create_event'
+LOGOUT_REDIRECT_URL = 'home'
