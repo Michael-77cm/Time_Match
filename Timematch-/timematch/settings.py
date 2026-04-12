@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY", "local-dev-only-change-this-2f4f56de71854f659f3f8c0ecfd1a2a7")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
@@ -32,10 +32,14 @@ ALLOWED_HOSTS = [
     host.strip()
     for host in os.environ.get(
         "ALLOWED_HOSTS",
-        ".herokuapp.com,127.0.0.1,localhost,8000-nielmc-django-project-0kylrta3cs.us2.codeanyapp.com",
+        ".herokuapp.com,127.0.0.1,localhost,8000-nielmc-django-project-0kylrta3cs.us2.codeanyapp.com, time-match-b5217b2f90ba.herokuapp.com",
     ).split(",")
     if host.strip()
 ]
+
+CSRF_TRUSTED_ORIGINS = 
+[ 'https://*.herokuapp.com']
+
 
 
 # Application definition
@@ -84,12 +88,17 @@ WSGI_APPLICATION = 'timematch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+#DATABASES = {
+    #'default': dj_database_url.config(
+        #default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        #conn_max_age=600,
+    #)
+#}
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-    )
+   'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
 
 
 # Password validation
