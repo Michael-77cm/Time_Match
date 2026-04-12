@@ -42,7 +42,14 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 
-CSRF_TRUSTED_ORIGINS = [ 'https://time-match-b5217b2f90ba.herokuapp.com'] 
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get(
+        "CSRF_TRUSTED_ORIGINS",
+        "https://time-match-b5217b2f90ba.herokuapp.com",
+    ).split(",")
+    if origin.strip()
+]
 
 
 # Application definition
