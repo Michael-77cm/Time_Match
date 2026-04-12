@@ -11,11 +11,16 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 import os
+import runpy
 from pathlib import Path
 import dj_database_url
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+ENV_FILE = BASE_DIR.parent / 'env.py'
+if not os.environ.get('DYNO') and ENV_FILE.is_file():
+    runpy.run_path(str(ENV_FILE))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -32,7 +37,7 @@ ALLOWED_HOSTS = [
     host.strip()
     for host in os.environ.get(
         "ALLOWED_HOSTS",
-        ".herokuapp.com,127.0.0.1,localhost,8000-nielmc-django-project-0kylrta3cs.us2.codeanyapp.com, time-match-b5217b2f90ba.herokuapp.com",
+        ".herokuapp.com,127.0.0.1,localhost,8000-nielmc-django-project-0kylrta3cs.us2.codeanyapp.com,time-match-b5217b2f90ba.herokuapp.com",
     ).split(",")
     if host.strip()
 ]
@@ -94,7 +99,11 @@ WSGI_APPLICATION = 'timematch.wsgi.application'
 #}
 
 DATABASES = {
-   'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+        ssl_require=IS_PRODUCTION,
+    )
 }
 
 
@@ -152,3 +161,5 @@ if IS_PRODUCTION and not DEBUG:
     SECURE_HSTS_PRELOAD = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
