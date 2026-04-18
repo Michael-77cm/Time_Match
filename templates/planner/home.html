@@ -3,26 +3,20 @@
 {% block title %}TimeMatch - Home{% endblock %}
 
 {% block content %}
-<section class="home-panel" aria-label="Time Match introduction">
-    <div class="hero-card">
-        <div class="hero-copy">
-            <p class="eyebrow">Home page</p>
-            <h2>Get everyone in sync and find the one perfect time to hangout.</h2>
-            <p class="hero-text">Time Match turns everyone's availability into a clear best-time recommendation, plus backup options in case plans change.</p>
+<div class="home">
+    <span class="eyebrow">HOME PAGE</span>
+    <h2>Get everyone in sync and find the one perfect time to hangout.</h2>
+    <p>
+        Time Match turns everyone’s availability into a clear best-time recommendation,
+        plus backup options in case plans change.
+    </p>
+    {% if not user.is_authenticated %}
+        <a href="{% url 'signup' %}" class="btn">Open dashboard</a>
+    {% else %}
+        <a href="{% url 'create_event' %}" class="btn">Open dashboard</a>
+    {% endif %}
 
-            <div class="hero-actions">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'create_event' %}" class="btn btn-primary">Open dashboard</a>
-                {% else %}
-                    <a href="{% url 'signup' %}" class="btn btn-primary">Get started</a>
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="hero-accent" aria-hidden="true"></div>
-    </div>
-
-    <section class="feature-grid" aria-label="How Time Match works">
+    <div class="feature-grid">
         <article class="feature-card">
             <h3>Share once</h3>
             <p>Create an event and send a short code to everyone.</p>
@@ -35,6 +29,6 @@
             <h3>Finalize confidently</h3>
             <p>Pick the best slot and notify the whole group instantly.</p>
         </article>
-    </section>
-</section>
+    </div>
+</div>
 {% endblock %}

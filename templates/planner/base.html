@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}TimeMatch{% endblock %}</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'planner/style.css' %}?v=8">
+    <link rel="stylesheet" href="{% static 'planner/style.css' %}?v=7">
     <script defer src="{% static 'planner/main.js' %}?v=1"></script>
 </head>
 <body>
-    <nav class="topbar">
-        <a class="brand" href="{% url 'home' %}" aria-label="TimeMatch home">
+    <nav class="site-nav">
+        <a class="brand" href="{% url 'home' %}">
             <span class="brand-mark">TM</span>
-            <span class="brand-name">Time Match</span>
+            <span class="brand-text">Time Match</span>
         </a>
         {% if user.is_authenticated %}
-            <ul class="nav-links">
+            <ul>
                 <li><a href="{% url 'home' %}">Home page</a></li>
                 <li><a href="{% url 'create_event' %}">Create Event</a></li>
-                <li><a href="{% url 'join_event' %}">Join Event</a></li>
+                <li><a href="{% url 'join_event' %}">Join event</a></li>
                 <li><a href="{% url 'availability_input' %}">Availability Input</a></li>
                 <li><a href="{% url 'event_overview' %}">Event Overview</a></li>
                 <li><a href="{% url 'notification_panel' %}">Notification Panel</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
         {% else %}
-            <ul class="nav-links">
+            <ul>
                 <li><a href="{% url 'home' %}">Home page</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
@@ -33,16 +33,14 @@
         {% endif %}
     </nav>
 
-    <main class="page-shell">
-        {% if messages %}
+    {% if messages %}
         <div class="messages">
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">{{ message }}</div>
             {% endfor %}
         </div>
-        {% endif %}
+    {% endif %}
 
-        {% block content %}{% endblock %}
-    </main>
+    {% block content %}{% endblock %}
 </body>
 </html>
