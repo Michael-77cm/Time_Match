@@ -3,12 +3,12 @@
 {% block title %}Join Event{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container dashboard-card">
     <h2>Join an Event</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Join</button>
+        <button type="submit" class="btn btn-primary">Join</button>
     </form>
 
     <h3>Your Events</h3>
