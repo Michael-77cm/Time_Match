@@ -3,23 +3,18 @@
 {% block title %}Join Event{% endblock %}
 
 {% block content %}
-<div class="container dashboard-card">
-    <h2>Join an Event</h2>
-    <form method="post">
+<div class="container join-event-page">
+    <h2>Join an event</h2>
+    <form method="post" class="join-event-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Join</button>
+        <div class="field-block">
+            <label for="{{ form.code.id_for_label }}">Event code</label>
+            {{ form.code }}
+            {% if form.code.errors %}
+                <div class="field-error">{{ form.code.errors|striptags }}</div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn join-event-btn">Join event</button>
     </form>
-
-    <h3>Your Events</h3>
-    {% if user_events %}
-        <ul>
-        {% for event in user_events %}
-            <li>{{ event.title }} ({{ event.code }})</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>Join an event to get started!</p>
-    {% endif %}
 </div>
 {% endblock %}

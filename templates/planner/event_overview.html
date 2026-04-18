@@ -3,21 +3,35 @@
 {% block title %}Event Overview{% endblock %}
 
 {% block content %}
-<div class="container dashboard-card">
+<div class="container event-overview-page">
     <h2>Event Overview</h2>
     {% if user_events %}
-        {% for event in user_events %}
-            <div class="event-card">
-                <h3>{{ event.title }}</h3>
-                <p><strong>Code:</strong> {{ event.code }}</p>
-                <p><strong>Members:</strong> {{ event.memberships.count }}</p>
-                {% if event.finalized_date %}
-                    <p><strong>Finalized:</strong> {{ event.finalized_date }} {{ event.finalized_start_time }}-{{ event.finalized_end_time }}</p>
-                {% endif %}
-            </div>
-        {% endfor %}
+        <form method="get" class="event-overview-form">
+            <label for="event_selector">Event title</label>
+            <select id="event_selector" name="event" onchange="this.form.submit()">
+                {% for event in user_events %}
+                    <option value="{{ event.code }}" {% if event.code == selected_code %}selected{% endif %}>
+                        {{ event.title }} ({{ event.code }})
+                    </option>
+                {% endfor %}
+            </select>
+        </form>
+
+        <div class="overview-meta">
+            <p><strong>Event title:</strong> {{ selected_event.title }}</p>
+            <p><strong>Best time(day and time):</strong> {{ best_slot_label }}</p>
+        </div>
+
+        <h3>Other options of days and times</h3>
+        <ul class="overview-options">
+            {% for option in option_labels %}
+                <li>{{ option }}</li>
+            {% endfor %}
+        </ul>
+
+        <button type="button" class="btn finalize-btn">Finalize event</button>
     {% else %}
-        <p>No events to display.</p>
+        <p class="overview-empty">No events to display.</p>
     {% endif %}
 </div>
 {% endblock %}

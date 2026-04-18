@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+from datetime import datetime, timedelta
 import random
 import string
 
@@ -10,9 +11,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Count
 from django.shortcuts import redirect, render
+from django.utils import timezone
 
 from .forms import AvailabilityInputForm, EventForm, JoinEventForm
 from .models import Availability, Event, EventMembership, Notification
+
+
+def _format_datetime_label(value):
+    date_part = value.strftime('%a, %b %d, %Y')
+    hour = value.strftime('%I').lstrip('0') or '0'
+    return f"{date_part} at {hour}:{value.strftime('%M %p')}"
 
 
 def home(request):
@@ -113,7 +121,30 @@ def availability_input(request):
 @login_required
 def event_overview(request):
     user_events = Event.objects.filter(memberships__user=request.user).distinct()
-    context = {'user_events': user_events}
+    selected_code = request.GET.get('event')
+    selected_event = user_events.filter(code=selected_code).first() if selected_code else user_events.first()
+
+    best_slot_label = ''
+    option_labels = []
+
+    if selected_event:
+        if selected_event.finalized_date and selected_event.finalized_start_time:
+            base_dt = datetime.combine(selected_event.finalized_date, selected_event.finalized_start_time)
+        else:
+            created_local = timezone.localtime(selected_event.created_at)
+            rounded_minutes = ((created_local.minute + 14) // 15) * 15
+            base_dt = created_local.replace(minute=0, second=0, microsecond=0) + timedelta(minutes=rounded_minutes)
+
+        best_slot_label = _format_datetime_label(base_dt)
+        option_labels = [_format_datetime_label(base_dt + timedelta(minutes=30 * index)) for index in range(1, 5)]
+
+    context = {
+        'user_events': user_events,
+        'selected_event': selected_event,
+        'selected_code': selected_event.code if selected_event else '',
+        'best_slot_label': best_slot_label,
+        'option_labels': option_labels,
+    }
     return render(request, 'planner/event_overview.html', context)
 
 
