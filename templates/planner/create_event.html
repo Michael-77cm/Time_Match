@@ -3,23 +3,29 @@
 {% block title %}Create Event{% endblock %}
 
 {% block content %}
-<div class="container dashboard-card">
-    <h2>Create New Event</h2>
-    <form method="post">
+<div class="container create-event-page">
+    <h2>Create Event</h2>
+    <form method="post" class="create-event-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Create Event</button>
+        <div class="field-block">
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+                <div class="field-error">{{ form.title.errors|striptags }}</div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn">Create event</button>
     </form>
 
     <h3>Your Events</h3>
     {% if user_events %}
-        <ul>
+        <ul class="event-list">
         {% for event in user_events %}
-            <li>{{ event.title }} ({{ event.code }}) - Created {{ event.created_at|date:"M d, Y" }}</li>
+            <li>{{ event.title }} (code: {{ event.code }})</li>
         {% endfor %}
         </ul>
     {% else %}
-        <p>No events yet. Create one above!</p>
+        <p class="events-empty">No events yet. Create one above!</p>
     {% endif %}
 </div>
 {% endblock %}
