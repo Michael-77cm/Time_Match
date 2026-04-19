@@ -5,10 +5,9 @@
 {% block content %}
 <div class="home">
     <span class="eyebrow">HOME PAGE</span>
-    <h2>Get everyone in sync and find the one perfect time to hangout.</h2>
-    <p>
-        Time Match turns everyone’s availability into a clear best-time recommendation,
-        plus backup options in case plans change.
+    <h2><span class="home-title-line-1">Get everyone in sync and find the one perfect</span><br>time&nbsp;to&nbsp;hangout.</h2>
+    <p class="home-subtitle">
+        Time Match turns everyone’s availability into a clear best-time recommendation, plus backup options in case plans change.
     </p>
     {% if not user.is_authenticated %}
         <a href="{% url 'signup' %}" class="btn">Open dashboard</a>
