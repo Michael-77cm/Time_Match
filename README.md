@@ -1,3 +1,4 @@
+      # Time Match
 # Time Match
 
 Time Match is a Django full-stack web application for coordinating group availability. It allows users to create an event, share a unique event code, join an event, submit availability, and view notifications related to their planning activity.
