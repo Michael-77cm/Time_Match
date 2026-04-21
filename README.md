@@ -1,5 +1,5 @@
 ***
-# <div align="center"> :sparkles: 	:date::clock3:Welcome to Time Match:clock3::date:  :sparkles: </div>
+# <div align="center"> :sparkles: 	:clock3:Welcome to Time Match:clock3:  :sparkles: </div>
 ***
 # Time Match
 
